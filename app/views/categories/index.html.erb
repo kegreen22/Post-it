@@ -1,0 +1,27 @@
+<h3>Welcome!</h3>
+
+<p>This is the Postit template. You've accessed the Categories Controller, index action. This is the index template. Find me under app/views/categories folder.</p>
+
+<h3>All Categories are shown below</h3>
+<br>
+<h4>Or create a new Category</h4>
+<%= link_to 'Create New Category', new_category_path %>
+<br>
+<br>
+<br>
+   <table>
+    <tr>
+    <th>Name</th>
+    <th>Edit</th>
+    </tr>
+
+<% @categories.each do |category| %>
+<tr>
+   <td><%= link_to category.name, category_path(category) %></td>
+   <td><%= link_to 'edit', edit_category_path(category) %></td>
+</tr>
+<% end %>
+
+</table>
+
+

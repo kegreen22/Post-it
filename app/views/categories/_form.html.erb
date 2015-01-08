@@ -1,0 +1,19 @@
+<% if @category.errors.any? %>
+<h5> There were some errors </h5>
+<ul>
+<% @category.errors.full_messages.each do |msg| %>
+<li> <%= msg %>  </li>
+<% end %>
+</ul>
+<% end %>
+
+<%= form_for @category do |f| %>
+   <p>
+	<%= f.label :name %><br>
+	<%= f.text_field :name %>
+   </p>
+
+   <p>
+   	<%= f.submit %>
+   </p>
+   <% end %>
