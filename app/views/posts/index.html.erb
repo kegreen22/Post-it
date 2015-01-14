@@ -9,21 +9,17 @@
 <br>
 <br>
 <br>
-   <table>
-    <tr>
-    <th>Title</th>
-    <th>URL</th>
-    <th>Edit</th>
-    </tr>
 
-<% @posts.each do |post| %>
-<tr>
-   <td><%= link_to post.title, post_path(post) %></td>
-   <td><%= post.url %></td>
-   <td><%= link_to 'edit', edit_post_path(post) %></td>
-</tr>
+<%= @posts.each do |post| %>
+<div class="row">
+	<div class="span8 well">
+		<%= render post.categories %>
+		<h5> <%= link_to post.title, post_path(post) %></h5>
+   		<p><%= post.url %></p>
+
+</div>
+</div>
 <% end %>
-
-</table>
+   
 
 

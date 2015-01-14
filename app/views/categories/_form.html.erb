@@ -1,15 +1,4 @@
-<% if @category.errors.any? %>
-<h5> There were some errors </h5>
-<ul>
-   <div class='row'>
-   <div class='alert alert-error span8'>
-<% @category.errors.full_messages.each do |msg| %>
-<li> <%= msg %>  </li>
-<% end %>
-</div>
-</div>
-</ul>
-<% end %>
+<<%= render "layouts/errors", obj: @category %>
 
 <div class='well'>
 <%= form_for @category do |f| %>
@@ -21,7 +10,7 @@
    </p>
 
    <p>
-   	<%= f.submit %>
+   	<%= f.submit "Create category", class: "btn btn-success" %>
    </p>
    <% end %>
 </div>
