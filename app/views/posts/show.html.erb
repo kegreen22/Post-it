@@ -1,0 +1,11 @@
+<h4>You're viewing<%= link_to @post.title, @post.url %></h4>
+ 
+<%= render "layouts/errors", obj: @comment %>
+<div class="control-group">
+<%= form_for [@post, @comment] do |f| %>
+<%= f.label :boady %>  
+<%= f.text_area :body %>
+</div>
+</br>
+<%= f.submit "Create Comment", class: "btn btn-primary" %>
+<% end %>

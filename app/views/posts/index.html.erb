@@ -1,11 +1,11 @@
 <h3>Welcome!</h3>
 
-<p>This is the Postit template. You've access the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
+<p>This is the Postit template. You've accessed the PostsController, index action. This is the index template. Find me under app/views/posts folder.</p>
 
 <h3>All Posts are shown below</h3>
 <br>
-<h4>Or create a new Post</h4>
-<%= link_to 'Create New Post', new_post_path %>
+<!-- <h4>Or create a new Post</h4>
+ <%= link_to 'Create New Post', new_post_path %> -->
 <br>
 <br>
 <br>
@@ -13,9 +13,9 @@
 <%= @posts.each do |post| %>
 <div class="row">
 	<div class="span8 well">
-		<%= render post.categories %>
-		<h5> <%= link_to post.title, post_path(post) %></h5>
-   		<p><%= post.url %></p>
+		<%= render post.categories %> <!-- test a -->
+		<h5> <%= link_to post.title, post_path(post) %></h5> <!-- test -->
+   		<p><%= link_to post.url, post.url %></p> <!-- need helper to fix http for each url -->
 
 </div>
 </div>
