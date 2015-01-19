@@ -17,7 +17,7 @@
 <% end %>
 
 <h5>Comments:</h5>
-<%= @post.comments.each do |comments| %>
+<% @post.comments.each do |comment| %>
 <div class="well span8">
 <%= comment.body %>
 <p>Created by: <%= link_to comment.user.username, '' %> at <%= comment.created_at %>

@@ -2,7 +2,7 @@ class CommentsController < ApplicationController
 
 def create # there is no new because the comment is based on an existing post
 	@post = Post.find(params[:post_id])
-	@comment = @post.comments.build(params.require(:comment).permit(body))
+	@comment = @post.comments.build(params.require(:comment).permit(:body))
 	@comment.user = User.first # just to have a user associated with the comment
 	#alternative syntax to link a comment to a post -- @comment.post = @post
  
@@ -11,7 +11,7 @@ def create # there is no new because the comment is based on an existing post
 		redirect_to post_path(@post)
  
 	else
-	render posts/show
+	render 'posts/show'
 		end
 end
 
