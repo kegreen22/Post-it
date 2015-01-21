@@ -4,14 +4,16 @@
 	<h5><%= link_to post.title, post.url %></h5>
 	<p> <%= post.description %> </p>
 	<p>
-		<span class='quiet'>posted by</span> <%= post.user.username %>
+		<span class='quiet'>posted by: </span> <%= post.user.username %>
+		<p>
 		<small>at <%= post.created_at %></small>
+	</p>
 	</p>
 	<small>
 		<span>
-			<%= link_to("post.comments.size) comments", post_path(post)) %>
+			<%= link_to("post.comment.size comments", post_path(post)) %>
 		</span>
 	</small>
+	
 </div>
 </div>
-<% end %> 
