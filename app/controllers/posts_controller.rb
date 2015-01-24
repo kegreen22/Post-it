@@ -22,8 +22,8 @@ end
 
 
 def show
-  	@post = Post.find(params[:id])
-    @comment = Comment.new
+  	@post = Post.find(params[:id])  # shown post
+    @comment = Comment.new #ability to create new comment
 end
  
 def edit
