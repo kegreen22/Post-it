@@ -1,4 +1,4 @@
-<h4>You're viewing: <%= link_to @post.title, @post.url %></h4>
+<h4>You're viewing: <%= link_to @post.title, fix_url(@post.url) %></h4>
 <br>
 <p>
 	<%= @post.description %>
@@ -20,7 +20,7 @@
 <% @post.comments.each do |comment| %>
 <div class="well span8">
 <%= comment.body %>
-<p>Created by: <%= link_to comment.user.username, '' %> at <%= comment.created_at %>
+<p>Created by: <%= link_to comment.user.username, '' %> at <%= display_datetime(comment.created_at) %>
 </div>
 <% end %>
 
