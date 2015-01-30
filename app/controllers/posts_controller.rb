@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
+  
   def index
   	@posts = Post.all 
     # show all posts
