@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
-  
+
   def index
   	@posts = Post.all 
     # show all posts
@@ -13,6 +13,7 @@ end
 
 def create
    @post = Post.new(post_params)
+   @post.user = current_user
    if @post.save
    flash[:notice] = "Your Post has been created. Thanks!"
    redirect_to posts_path

@@ -16,15 +16,15 @@ end
  
  
 def update
-@user = User. (:id)
+@user = User.find(params[:id])
  
 if @user.update
- 
+flash[:notice] = "Your profile has been updated." 
+redirect_to root_path
 else
 render :update
  
 end
- 
 end
  
  

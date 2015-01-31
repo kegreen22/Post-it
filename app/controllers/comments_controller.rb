@@ -4,7 +4,7 @@ before_action :require_user, except: [:index, :show] #require_user is applicatio
 def create # there is no new because the comment is based on an existing post
 	@post = Post.find(params[:post_id])
 	@comment = @post.comments.build(params.require(:comment).permit(:body))
-	@comment.user = User.first # just to have a user associated with the comment
+	@comment.user = current_user # associate current user with the comment
 	#alternative syntax to link a comment to a post -- @comment.post = @post
  
 		if @comment.save
