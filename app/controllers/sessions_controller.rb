@@ -13,7 +13,7 @@ redirect_to root_path
 else
 flash[:error] = "Your username or e-mail is incorrect"
 redirect_to register_path 
- 
+ end
 end
  
  

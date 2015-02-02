@@ -23,11 +23,25 @@ Categories <span class='caret'></span>
 		New Category
 
 		<% end %>
+	
 </ul>
 
 </div>
 <div class='nav_item'>
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
-
-  
 </div>
+
+<div class='nav_item'>
+	<% if logged_in? %>
+	<%= current_user.username %>
+	 <%= link_to "Log out", logout_path %>
+	<% else %>
+  <%= link_to "Sign in", '/login' %>
+  <% end %>
+</div>
+
+<div class='nav_item'>
+	<% if !logged_in? %>
+<%= link_to "Sign up if you're new", '/register' %>
+  </div>
+<% end %>

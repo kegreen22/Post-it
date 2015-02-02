@@ -1,4 +1,4 @@
-Create class UsersController < ApllicationController
+class UsersController < ApplicationController
 def new
 @user = User.new
 end
@@ -7,7 +7,7 @@ def create
 @user = User.new(user_params)
  
 if @user.save
-flash [:notice] = "Your information has been saved. Welcome!"
+flash[:notice] = "Your information has been saved. Welcome!"
 redirect_to root_path
 else
 render :new
@@ -18,7 +18,7 @@ end
 def update
 @user = User.find(params[:id])
  
-if @user.update
+if @user.update(user_params)
 flash[:notice] = "Your profile has been updated." 
 redirect_to root_path
 else
