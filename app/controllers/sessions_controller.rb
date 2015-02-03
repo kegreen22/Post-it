@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 def new
- 
+ # displays the login form
  
 end
  

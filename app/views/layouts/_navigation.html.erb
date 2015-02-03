@@ -36,12 +36,12 @@ Categories <span class='caret'></span>
 	<%= current_user.username %>
 	 <%= link_to "Log out", logout_path %>
 	<% else %>
-  <%= link_to "Sign in", '/login' %>
+  <%= link_to "Sign in", login_path %>
   <% end %>
 </div>
 
 <div class='nav_item'>
 	<% if !logged_in? %>
-<%= link_to "Sign up if you're new", '/register' %>
+<%= link_to "Sign up if you're new", register_path %>
   </div>
 <% end %>
