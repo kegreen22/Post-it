@@ -12,5 +12,5 @@ get '/logout', to: 'sessions#destroy'
 end
   resources :categories, only: [:new, :show, :create]
 
-  resources :users, only: [:create, :update]
+  resources :users, only: [:create, :update, :show, :edit]
 end

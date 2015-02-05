@@ -21,9 +21,7 @@ def update
 if @user.update(user_params)
 flash[:notice] = "Your profile has been updated." 
 # now automatically log user into the sit after their registration
-user = User.find_by(username: params[:username])
-session[:user_id] = user.id
-@current_user ||=User.find(session[:user_id]) if session[:user_id]
+session[:user_id] = @user.id
 redirect_to root_path
 else
 render :update
