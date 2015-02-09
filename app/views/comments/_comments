@@ -1,0 +1,5 @@
+<% @post.comments.each do |comment| %>
+<div class="well span8">
+<%= comment.body %>
+<p>Created by: <%= link_to comment.user.username, '' %> at <%= display_datetime(comment.created_at) %>
+</div>

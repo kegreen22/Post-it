@@ -38,9 +38,9 @@ Categories <span class='caret'></span>
  
 <ul class='dropdown-menu'>
     <li>
-    <%= link_to 'Edit your profile', edit_user_path(@user), class: 'glyphicon glyphicon-pencil' %>
-    <%= link_to 'View your profile', user_path(@user), class: 'glyphicon glyphicon-eye-open' %>
-    <%= link_to 'Log out', logout_path, class: 'glyphicon glyphicon-user' %>
+    <%= link_to edit_user_path(current_user) do %> <i class="icon-pencil"></i>Edit Profile<% end %>
+    <%= link_to user_path(current_user) do %> <i class="icon icon-home"></i>View Profile<% end %>
+    <%= link_to logout_path do %> <i class="icon icon-user"> </i>Logout<% end %>
     </li>
 </ul> 
 <% end %>           
@@ -48,6 +48,7 @@ Categories <span class='caret'></span>
 
   <%= link_to "Sign in", login_path %>
 <% end %>
+<span
 <div class='nav_item'>
 	<% if !logged_in? %>
 <%= link_to "Sign up if you're new", register_path %>
@@ -58,17 +59,3 @@ Categories <span class='caret'></span>
 
 
 
-<!-- <div class='nav_item'>
-	<% if logged_in? %>
-	<%= current_user.username %>
-	 <%= link_to "Log out", logout_path %>
-	<% else %>
-  <%= link_to "Sign in", login_path %>
-  <% end %>
-</div>
-
-<div class='nav_item'>
-	<% if !logged_in? %>
-<%= link_to "Sign up if you're new", register_path %>
-  </div>
-<% end %> -->

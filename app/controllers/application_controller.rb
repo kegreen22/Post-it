@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-helper_method :current_user, :logged_in?  # use this to expose the methods below to all views and controllers
+helper_method :current_user, :logged_in?, :require_user, :require_same # use this to expose the methods below to all views and controllers
  
 def current_user
 # if there is a current user rtn that if not then rtn nil
@@ -19,6 +19,13 @@ def require_user
 if !logged_in?
   flash[:error] = "You need to be logged in to take that action"
   redirect_to root_path
+end
+
+def require_same
+if current_user != @user
+	flash[:error] = "You are not authorized to take that action."
+	redirect_to root_path
+end
 end
 
 end
