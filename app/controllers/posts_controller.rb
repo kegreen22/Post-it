@@ -2,7 +2,7 @@ class PostsController < ApplicationController
 before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
 
   def index
-  	@posts = Post.all 
+  	@posts = Post.all.sort_by(|x| x.total_votes).reverse
     # show all posts
   end
 
@@ -42,8 +42,18 @@ def update
    else
    render :edit
    end
-end
+ end
 
+def vote
+post = Post.find(params[:id])
+@vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
+ 
+if @vote.valid?
+flash[:notice] = "Your vote was counted."
+else
+flash[:error] = "Your vote was not counted. Note: You can only vote for your own posts."
+redirect_to :back #return to wherever you came from
+end
  
 def post_params
    params.require(:post).permit!
