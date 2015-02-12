@@ -8,8 +8,16 @@ post '/login', to: 'sessions#create'
 get '/logout', to: 'sessions#destroy'
 
   resources :posts, except: [:destroy] do
-  	resources :comments, only: [:create]
-end
+  	member do #exposed to every resource of the member
+	post :vote
+	end
+  	resources :comments, only: [:create] 
+  		member do
+		comment :vote
+		end
+	
+	end
+  
   resources :categories, only: [:new, :show, :create]
 
   resources :users, only: [:new, :create, :update, :show, :edit]
