@@ -16,4 +16,11 @@ def create # there is no new because the comment is based on an existing post
 		end
 end
 
+def vote
+commment = Comment.find(params[:id])
+Vote.create(voteable: comment, user: current_user, vote: params[:vote])
+flash[:notice] = "Your vote was counted"
+redirect_to :back
+end
+
 end

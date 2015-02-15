@@ -11,11 +11,11 @@ get '/logout', to: 'sessions#destroy'
   	member do #exposed to every resource of the member
 	post :vote
 	end
-  	resources :comments, only: [:create] 
+  	resources :comments, only: [:create, :show] do 
   		member do
-		comment :vote
+		post :vote
 		end
-	
+	end
 	end
   
   resources :categories, only: [:new, :show, :create]
