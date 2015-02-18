@@ -9,12 +9,12 @@
 <br>
 <br>
 
-<%= @posts.each do |post| %>
+<% @posts.each do |post| %>
 <div class="row">
 	<div class="span8 well">
-		<%= render post.categories %> <!-- test a -->
-		<h5> <%= link_to post.title, post_path(post) %></h5> <!-- test -->
-   		<p><%= link_to post.url, fix_url(post.url) %></p> <!-- need helper to fix http for each url -->
+		<%= render post.categories %> 
+		<h5> <%= link_to post.title, post_path(post) %></h5> 
+		<p><%= link_to post.url, fix_url(post.url) %></p> 
 
 </div>
 </div>
