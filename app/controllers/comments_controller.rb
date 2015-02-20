@@ -17,10 +17,15 @@ def create # there is no new because the comment is based on an existing post
 end
 
 def vote
-commment = Comment.find(params[:id])
-Vote.create(voteable: comment, user: current_user, vote: params[:vote])
-flash[:notice] = "Your vote was counted"
+comment = Comment.find(params[:id])
+vote = Vote.create(voteable: comment, user: current_user, vote: params([:vote]))
+if vote.valid?
+flash[:notice]="Your vote was counted."
+else
+flash[:error]="You can only vote once."
+end
 redirect_to :back
 end
+
 
 end

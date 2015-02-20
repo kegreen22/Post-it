@@ -45,15 +45,14 @@ def update
  end
 
 def vote
-post = Post.find(params[:id])
-@vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
+vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
  
-if @vote.valid?
-flash[:notice] = "Your vote was counted."
+if vote.valid?
+flash[:notice]="Your vote was counted."
 else
-flash[:error] = "Your vote was not counted. Note: You can only vote for your own posts."
-redirect_to :back #return to wherever you came from
+flash[:error]="You can only vote once."
 end
+redirect_to :back
 end
  
 def post_params
