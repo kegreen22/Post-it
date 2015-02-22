@@ -27,14 +27,17 @@ Categories <span class='caret'></span>
 </ul>
 
 </div>
+<% if logged_in? %>
 <div class='nav_item'>
+
     <%= link_to 'New Post', new_post_path, class: 'btn btn-success btn-small' %>
 </div>
+<% end %>
 
 <% if logged_in? %>
 <div class='btn-group nav_item'>
-                <%= link_to '#', class: 'btn btn-primary dropdown-toggle', 'data-toggle' => 'dropdown' do %>
-<%= current_user.username %> <span class='caret'></span>
+                <%= link_to('#', class: 'btn btn-primary dropdown-toggle', 'data-toggle' => 'dropdown') do %>
+<%= current_user.username %>  <span class='caret'></span> <% end %>
  
 <ul class='dropdown-menu'>
     <li>
@@ -43,7 +46,7 @@ Categories <span class='caret'></span>
     <%= link_to logout_path do %> <i class="icon icon-user"> </i>Logout<% end %>
     </li>
 </ul> 
-<% end %>           
+</div>          
 <% else %>
 <span>
 <div class='nav_item'>
