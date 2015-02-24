@@ -1,31 +1,31 @@
 <div class='row'>
 <div class='span0 well text-center'>
-<%= link_to vote_post_path(post, vote: true), method: 'post' do %>
+<%= link_to vote_post_path(post, vote: true, id: @post.id), method: 'post' do %>
 <i class='icon-arrow-up'></i>
 <% end %>
-<br/>
-<% post.total_votes %> votes
-<br/>
-<%= link_to vote_post_path(post, vote: false), method: 'post' do %>
+<br>
+<%= post.total_votes %> votes
+<br>
+<%= link_to vote_post_path(post, vote: false, id: @post.id), method: 'post' do %>
 <i class='icon-arrow-down'></i>
 <% end %>
 </div>
 
 
 	<p>
-		<div class="well span8">
+		<div class="span8 well">
 			<%= render post.categories %>
 	<h5><%= link_to post.title, fix_url(post.url) %></h5>
 	<p> <%= post.description %> </p>
 
-		<span class='quiet'>posted by: </span> <%= post.user.username %>
+		<span class='quiet'>posted by: </span> <%= post.user.username, user_path(post.user) %>
 		<p>
 		<small>at <%= display_datetime(post.created_at) %></small>
 	</p>
 	</p>
 	<small>
 		<span>
-			<%= link_to(post.comments.size, post_path(post)) %><span> Comments</span>
+			<%= link_to("#{post.comments.size} comments", post_path(post)) %>
 		</span>
 	</small>
 	

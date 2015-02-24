@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 before_action :require_same, only: [:edit, :update]
+# before_action :set_user, only: [:show, :edit, :update]
 
 def new
 @user = User.new
@@ -11,6 +12,7 @@ def create
 if @user.save
 flash[:notice] = "Your information has been saved. Welcome!"
 session[:user_id] = @user.id
+# now automatically log user into the site after their registration
 redirect_to root_path
 else
 render :new
@@ -32,7 +34,7 @@ def update
  
 if @user.update(user_params)
 flash[:notice] = "Your profile has been updated." 
-# now automatically log user into the sit after their registration
+
 
 redirect_to user_path(@user)
 else
@@ -47,6 +49,8 @@ def user_params # allow whitelist through
 params.require(:user).permit(:username, :password)
 end
  
-
+def set_user
+@user = User.find(params[:id])
+end
 
 end # the end of the controller

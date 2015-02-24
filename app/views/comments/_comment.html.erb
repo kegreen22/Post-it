@@ -2,13 +2,13 @@
 <div class='row'>
 <div class='span0 well text-center'>
 
-	<%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post' do %>
+	<%= link_to vote_post_comment_path(vote: true, post_id: @post.id, comment_id: comment, user: current_user), method: 'post' do %>
 	<i class ='icon-arrow-up'></i>
 	<% end %>
 	<br>
 	<%= comment.total_votes %> votes
 	</br>
-	<%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post' do %>
+	<%= link_to vote_post_comment_path(vote: false, post_id: @post.id, comment_id: comment, user: current_user), method: 'post' do %>
 	<i class ='icon-arrow-down'></i>
 	<% end %>
 </div>
@@ -19,6 +19,6 @@
 on <%= link_to comment.post.title, post_path(comment.post) %> 
 <% end %>
 <br/>
-<span class='quiet'>by </span><%= link_to comment.user.username, user_path(comment.user) %>
+<span class='quiet'>by </span><%= link_to comment.user, user_path(comment.user) %>
 at <%= display_datetime(comment.created_at) %>
 </div>
