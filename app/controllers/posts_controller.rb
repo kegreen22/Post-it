@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
 before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
+before_action :set_post, only: [:show, :edit, :update, :vote]
 
   def index
   	@posts = Post.all.sort_by{|x| x.total_votes}.reverse
@@ -25,16 +26,16 @@ end
 
 
 def show
-  	@post = Post.find(params[:id])  # shown post
+  	# @post = Post.find(params[:id])  # shown post
     @comment = Comment.new #ability to create new comment
 end
  
 def edit
-   @post = Post.find(params[:id])
+  # @post = Post.find(params[:id])
 end
 
 def update
-   @post = Post.find(params[:id])
+  #  @post = Post.find(params[:id])
    if @post.update(post_params)
    flash[:notice] = "Your Post has been updated. Thanks!"
    redirect_to posts_path
@@ -45,7 +46,7 @@ def update
  end
 
 def vote
-vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
+vote = Vote.create(voteable: @post, username: current_user, vote: params[:vote])
  
 if vote.valid?
 flash[:notice]="Your vote was counted."
@@ -58,5 +59,9 @@ end
 def post_params
    params.require(:post).permit!
 end
+
+def set_post
+    @post = Post.find(params[:id])
+  end
 
 end
