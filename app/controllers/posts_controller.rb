@@ -38,7 +38,7 @@ def update
   #  @post = Post.find(params[:id])
    if @post.update(post_params)
    flash[:notice] = "Your Post has been updated. Thanks!"
-   redirect_to posts_path
+   redirect_to posts_path(@post)
    # Render edit template again if database save fails (an error)
    else
    render :edit
@@ -46,7 +46,7 @@ def update
  end
 
 def vote
-vote = Vote.create(voteable: @post, username: current_user, vote: params[:vote])
+vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
  
 if vote.valid?
 flash[:notice]="Your vote was counted."
@@ -57,7 +57,8 @@ redirect_to :back
 end
  
 def post_params
-   params.require(:post).permit!
+   params.require(:post).permit(:title, :url, :description, category_ids: [])
+   # params.require(:post).permit!
 end
 
 def set_post

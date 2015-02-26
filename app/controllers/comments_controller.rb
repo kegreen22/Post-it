@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     @comment.user = current_user
     
     if @comment.save
-      flash[:notice] = "Your comment has been added"
+      flash[:notice] = "Your comment has been saved. Thanks!"
       redirect_to post_path(@post)
     else
       render 'posts/show'
@@ -19,9 +19,9 @@ class CommentsController < ApplicationController
     vote  = Vote.create(voteable: comment, user: current_user, vote: params[:vote])
     
     if vote.valid?
-      flash[:notice] = "Your vote has been counted."
+      flash[:notice] = "Your vote was counted. Thanks!"
     else
-      flash[:error] = "You may only vote on a comment once."
+      flash[:error] = "You can only vote on a comment once."
     end
     
     redirect_to :back
