@@ -49,11 +49,15 @@ def vote
 vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
  
 if vote.valid?
-flash[:notice]="Your vote was counted."
+respond_to do |format|
+format.html { redirect_to :back, notice: "Your vote was counted."}
+format.js  #ajax code
+end
 else
 flash[:error]="You can only vote once."
+# redirect_to :back
 end
-redirect_to :back
+# redirect_to :back
 end
  
 def post_params
