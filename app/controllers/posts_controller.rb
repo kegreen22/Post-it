@@ -2,6 +2,7 @@ class PostsController < ApplicationController
 before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
 before_action :set_post, only: [:show, :edit, :update, :vote]
 
+
   def index
   	@posts = Post.all.sort_by{|x| x.total_votes}.reverse
     # show all posts
@@ -46,27 +47,32 @@ def update
  end
 
 def vote
-vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
+@vote = Vote.create(voteable: @post, user: current_user, vote: params[:vote])
  
-if vote.valid?
 respond_to do |format|
-format.html { redirect_to :back, notice: "Your vote was counted."}
-format.js  #ajax code
-end
+format.html do
+if @vote.valid?
+flash[:notice] = "Your vote has been counted."
 else
 flash[:error]="You can only vote once."
-# redirect_to :back
 end
-# redirect_to :back
+redirect_to :back
 end
+format.js  #ajax code
+end
+end
+
+
  
+private 
 def post_params
    params.require(:post).permit(:title, :url, :description, category_ids: [])
    # params.require(:post).permit!
 end
 
 def set_post
-    @post = Post.find(params[:id])
+    #@post = Post.find(params[:id])
+    @post = Post.find_by(slug: params[:id])
   end
 
 end
