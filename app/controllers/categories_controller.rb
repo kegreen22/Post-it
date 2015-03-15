@@ -21,7 +21,7 @@ before_action :require_user, except: [:new, :create] #require_user is applicatio
 	end
 
 	def show
-		@category = Category.find(params[:id])
+		@category = Category.find_by(slug: params[:id])
 	end
 
 

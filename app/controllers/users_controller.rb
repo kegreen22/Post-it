@@ -46,7 +46,7 @@ params.require(:user).permit(:username, :password)
 end
  
 def set_user
-@user = User.find(params[:id])
+@user = User.find_by(slug: params[:id])
 end
 
 end # the end of the controller

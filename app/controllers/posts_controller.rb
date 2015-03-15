@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
-before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
 before_action :set_post, only: [:show, :edit, :update, :vote]
-
+before_action :require_user, except: [:index, :show] #require_user is application-wide & is a redirect if not logged in
 
   def index
   	@posts = Post.all.sort_by{|x| x.total_votes}.reverse
@@ -64,7 +63,7 @@ end
 
 
  
-private 
+
 def post_params
    params.require(:post).permit(:title, :url, :description, category_ids: [])
    # params.require(:post).permit!
