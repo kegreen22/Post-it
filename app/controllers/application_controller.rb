@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-helper_method :current_user, :logged_in?, :require_user, :require_same 
+helper_method :current_user, :logged_in?, :require_user, :require_same, :require_admin, :access_denied 
  # use this to expose the methods below to all views and controllers :require_user, :require_same
  
 def current_user
@@ -27,6 +27,16 @@ if current_user != @user
 	flash[:error] = "You are not authorized to take that action."
 	redirect_to root_path
 end
+end
+
+def require_admin
+# redirect if the role is not an admin
+access_denied unless logged_in? and current_user.admin?
+end
+
+def access_denied
+flash[:error] = "You must be an administrator to take that action."
+redirect_to root_path
 end
 
 end

@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
 # has all actions except destroy
-before_action :require_user, except: [:new, :create] #require_user is application-wide & is a redirect if not logged in
+before_action :require_user, only: [:new, :create] #require_user is application-wide & is a redirect if not logged in
+before_action :require_admin, only: [:new, :create, :update]
 
 	def index
 	@categories = Category.all
@@ -14,7 +15,7 @@ before_action :require_user, except: [:new, :create] #require_user is applicatio
 		@category = Category.new(category_params)
 		if @category.save
 		flash[:notice] = "Your new category has been created. Thanks!"
-		redirect_to categories_path
+		redirect_to :back
 		else
 			render :new
 		end
@@ -29,7 +30,7 @@ before_action :require_user, except: [:new, :create] #require_user is applicatio
 		@category = Category.find(params[:id])
 		if @category.update(category_params)
 		flash[:notice] = "Your category has been updated. Thanks!"
-		redirect_to categories_path
+		redirect_to :back
 		else
 		render :edit
 		end

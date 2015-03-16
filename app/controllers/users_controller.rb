@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 # before_action :require_same, only: [:show, :edit, :update]
 before_action :set_user, only: [:show, :edit, :update]
+before_action :require_same, only: [:edit, :update]
 
 def new
 @user = User.new
@@ -40,7 +41,7 @@ end
  
  
  
-private
+
 def user_params # allow whitelist through
 params.require(:user).permit(:username, :password)
 end
