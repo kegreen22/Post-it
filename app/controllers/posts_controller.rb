@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
-before_action :set_post, only: [:show, :edit, :update, :vote]
 before_action :require_user, except: [:show, :index] #require_user is application-wide & is a redirect if not logged in
+before_action :set_post, only: [:show, :edit, :update, :vote]
 before_action :require_admin, only: [:edit]
 
   def index
