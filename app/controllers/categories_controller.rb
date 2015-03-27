@@ -1,7 +1,7 @@
 class CategoriesController < ApplicationController
 # has all actions except destroy
 before_action :require_user, only: [:new, :create] #require_user is application-wide & is a redirect if not logged in
-before_action :require_admin, only: [:new, :create, :update]
+# before_action :require_admin, only: [:new, :create, :update]
 
 	def index
 	@categories = Category.all
