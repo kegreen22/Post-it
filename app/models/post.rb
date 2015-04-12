@@ -28,7 +28,11 @@ class Post < ActiveRecord::Base
 	end
 
 	def generate_slug
-	self.slug = self.title.gsub(" ", "-").downcase
+		str = self.title
+		str = str.strip
+		str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
+		str.gsub! /-+/, "-"
+	  self.slug = str.downcase
 
 	end
 

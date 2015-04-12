@@ -6,8 +6,12 @@ class Category < ActiveRecord::Base
 
 	before_save :generate_slug
 
-	def generate_slug 
-	self.slug = self.name.gsub(" ", "-").downcase 
+	def generate_slug
+	  str = self.name
+		str = str.strip
+		str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
+		str.gsub! /-+/, "-" 
+	  self.slug = str.downcase 
 	end
 
 	def to_param

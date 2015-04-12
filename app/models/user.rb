@@ -10,7 +10,11 @@ class User < ActiveRecord::Base
     before_save :generate_slug
 
     def generate_slug 
-	self.slug = self.username.gsub(" ", "-").downcase 
+    str = self.username
+    str = str.strip
+    str.gsub! /\s*[^A-Za-z0-9]\s*/, '-'
+    str.gsub! /-+/, "-"
+    self.slug = str.downcase 
 	end
 
 	def to_param
